@@ -38,12 +38,12 @@
 
 <script>
 $(document).ready(function () {
-	$.ajax({ 	type: ‘GET’,
- 			url: “http://www.dropbox.com/s/kvxegywmdah9rgc/data.jsonp?dl=1”,
+	$.ajax({ 	type: 'GET',
+ 			url: "http://www.dropbox.com/s/kvxegywmdah9rgc/data.jsonp?dl=1",
  			async: false, 
-			jsonpCallback: ‘jsonCallback’, 
-			contentType: “application/json”, 
-			dataType: ‘jsonp’, 
+			jsonpCallback: 'jsonCallback', 
+			contentType: "application/json", 
+			dataType: 'jsonp', 
 			success: function(json) { 
 				console.dir(json.data);
 
