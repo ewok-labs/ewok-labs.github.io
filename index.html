@@ -14,23 +14,6 @@
 
 <script src="Chart.js"></script>
 
-</head>
-<body>
-<div id="wrapper">
-
-<!-- header -->
-<header>
-<!--<h2><span>&#8486;</span></h2>-->
-<h1><b>ewok</h1>
-</header>
-<!-- close header -->
-
-<!-- about text -->
-<section>
-<p>The ewok is an Electronics WOrKshop at the HPI/HCI chair. If you need to solder, contact us via <a href="https://twitter.com/ewok_labs">twitter</a></p>
-<img src="https://dl.dropboxusercontent.com/u/7329207/drop/websites/ewok/ewok.JPG">
-</br>
-
 <script>
 var ctx = document.getElementById("myChart").getContext("2d");
 var myLineChart = new Chart(ctx).Line(data, options);
@@ -60,8 +43,25 @@ var data = {
         }
     ]
 };
-
 </script>
+
+</head>
+<body>
+<div id="wrapper">
+
+<!-- header -->
+<header>
+<!--<h2><span>&#8486;</span></h2>-->
+<h1><b>ewok</h1>
+</header>
+<!-- close header -->
+
+<!-- about text -->
+<section>
+<p>The ewok is an Electronics WOrKshop at the HPI/HCI chair. If you need to solder, contact us via <a href="https://twitter.com/ewok_labs">twitter</a></p>
+<img src="https://dl.dropboxusercontent.com/u/7329207/drop/websites/ewok/ewok.JPG">
+</br>
+
 <canvas id="myChart" width="400" height="400"></canvas>
 
 </section>
