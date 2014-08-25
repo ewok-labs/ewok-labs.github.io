@@ -36,7 +36,9 @@
 <script>
 
 var ctx = document.getElementById("myChart").getContext("2d");
+console.log(ctx);
 var myLineChart = new Chart(ctx).Line(data, options);
+console.log(myLineChart);
 
 var data = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
