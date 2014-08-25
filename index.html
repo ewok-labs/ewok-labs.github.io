@@ -12,7 +12,10 @@
 <script src="scripts/html5.js"></script> 
 <![endif]-->
 
-<script src="script/Chart.js"></script>
+<script src="bower_components/chartjs/Chart.js"></script>
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+
 
 </head>
 <body>
@@ -34,11 +37,12 @@
 <canvas id="myChart" width="400" height="400"></canvas>
 
 <script>
-
-var ctx = document.getElementById("myChart").getContext("2d");
-console.log(ctx);
-var myLineChart = new Chart(ctx).Line(data, options);
-console.log(myLineChart);
+$(document).ready(function () {
+	$.get("http://www.dropbox.com/s/xwgz7h01xedky3p/data.json?dl=1", function (data) {
+		console.log(data);
+	});
+})
+		
 
 var data = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -65,6 +69,11 @@ var data = {
         }
     ]
 };
+
+var ctx = document.getElementById("myChart").getContext("2d");
+console.log(ctx);
+var myLineChart = new Chart(ctx).Line(data);
+console.log(myLineChart);
 
 </script>
 
