@@ -37,6 +37,8 @@
 <canvas id="myChart" width="400" height="400"></canvas>
 
 <script>
+
+
 $(document).ready(function () {
 	$.ajax({ 	type: 'GET',
  			url: "http://www.dropbox.com/s/kvxegywmdah9rgc/data.jsonp?dl=1",
@@ -46,30 +48,63 @@ $(document).ready(function () {
 			dataType: 'jsonp', 
 			success: function(json) { 
 				console.dir(json.data);
-
-
+				var start_time = json.data[0].timestamp;
+				var lame_size = 0; //seriously i did not get "lenght" to work! :(
+				var plant_0_data = new Array(1614);//lame_size);
+				var plant_1_data = new Array(1614);//lame_size);
+				
+				for (var key in json.data) {
+  					if (json.data.hasOwnProperty(key)) {
+						var time = json.data[key].timestamp;
+						var plant_0 = json.data[key].plants["0"] //note this should be an iterator, not a direct access
+						plant_0_data[lame_size] = plant_0;
+						var plant_1 = json.data[key].plants["1"]
+						plant_1_data[lame_size] = plant_1;
+						lame_size++; //now started to use this as an iterator, so probably make this whole thing go iterator style, copy from below
+    						//console.log(key + " -> " + time  + "  " +  plant_0 + "  " + plant_1);
+					}
+  				}
+				var end_time = json.data[lame_size-1].timestamp;
+				console.log("start_time= " + start_time + " end_time= " + end_time);
+				//generate labels
+				var num_data_labels = 10;		
+				var labels_from_timestamps = new Array(num_data_labels);
+				var d, i;
+				var label_iter =0;
+				for (i = 0; i < json.data.length; i=i+Math.floor(lame_size/num_data_labels)) { 
+  					if (typeof json.data[i] != 'undefined'){
+						d = json.data[i];
+						labels_from_timestamps[label_iter]=d.timestamp;
+  						//console.log(d.timestamp);
+						label_iter++;
+					}
+				}
+	
 				var data = {
-    					labels: ["January", "February", "March", "April", "May", "June", "July"],
+    					//labels: ["January", "February", "March", "April", "May", "June", "July"],
+					labels: labels_from_timestamps,
     					datasets: [
         				{
-            					label: "My First dataset",
+            					label: "Claude",
             					fillColor: "rgba(220,220,220,0.2)",
             					strokeColor: "rgba(220,220,220,1)",
             					pointColor: "rgba(220,220,220,1)",
             					pointStrokeColor: "#fff",
             					pointHighlightFill: "#fff",
             					pointHighlightStroke: "rgba(220,220,220,1)",
-            					data: [65, 59, 80, 81, 56, 55, 40]
+            					//data: [65, 59, 80, 81, 56, 55, 40]
+            					data: plant_0_data
         				},
         				{
-            				label: "My Second dataset",
-            				fillColor: "rgba(151,187,205,0.2)",
-            				strokeColor: "rgba(151,187,205,1)",
-            				pointColor: "rgba(151,187,205,1)",
-            				pointStrokeColor: "#fff",
-            				pointHighlightFill: "#fff",
-            				pointHighlightStroke: "rgba(151,187,205,1)",
-            				data: [28, 48, 40, 19, 86, 27, 90]
+            					label: "Ada",
+            					fillColor: "rgba(151,187,205,0.2)",
+            					strokeColor: "rgba(151,187,205,1)",
+            					pointColor: "rgba(151,187,205,1)",
+            					pointStrokeColor: "#fff",
+            					pointHighlightFill: "#fff",
+            					pointHighlightStroke: "rgba(151,187,205,1)",
+            					//data: [28, 48, 40, 19, 86, 27, 90]
+            					data: plant_1_data
         				}
     					]
 				};
@@ -82,8 +117,7 @@ $(document).ready(function () {
 			}, error: function(e) { console.log(e.message); } 
 	});
 		
-}
-
+})
 </script>
 
 
